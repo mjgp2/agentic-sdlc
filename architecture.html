@@ -3,18 +3,85 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=lifecycle-guide.html#design" />
-    <title>Moved: Architecture | Agentic SDLC</title>
+    <title>Architecture Deep Dive | Agentic SDLC</title>
     <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
   </head>
   <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
     <main class="page-shell">
       <section class="page-hero">
-        <p class="eyebrow">Moved</p>
-        <h1>Architecture guidance now lives in the Lifecycle guide.</h1>
-        <p class="lede">Design, ADRs, diagrams, and architecture gates are part of the SDLC path.</p>
-        <p><a class="button primary" href="lifecycle-guide.html#design">Open design guidance</a></p>
+        <p class="eyebrow">Deep dive</p>
+        <h1>Architecture choices need to be repo text, not chat memory.</h1>
+        <p class="lede">
+          Agents follow the context they can inspect. Put boundaries, data shape, diagrams, ADRs,
+          and rejected options into durable files so implementation stays aligned with the system.
+        </p>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <p class="eyebrow">Architecture artifacts</p>
+          <h2>Use the lightest durable artifact that explains the decision.</h2>
+          <ul>
+            <li>ADR for a choice with tradeoffs or rejected options.</li>
+            <li>Mermaid sequence diagram for cross-service or retry-heavy behavior.</li>
+            <li>State diagram for lifecycle/status transitions.</li>
+            <li>Data-flow or threat model for trust-boundary changes.</li>
+            <li>ERD/database diagram for persistence, migration, or ownership changes.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Agent checks</p>
+          <h2>Use AI to challenge diagrams before code exists.</h2>
+          <ul>
+            <li>Ask what branches, retries, failure states, or idempotency rules are missing.</li>
+            <li>Ask which package owns each DTO, port, repository, adapter, and runtime composition point.</li>
+            <li>Ask whether the proposed change violates AGENTS.md or existing architecture notes.</li>
+            <li>Ask what proof layer should cover the behavior before implementation starts.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="prompt-kit" aria-labelledby="arch-prompt-title">
+        <div>
+          <p class="eyebrow">Prompt</p>
+          <h2 id="arch-prompt-title">Review the architecture before implementation.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>Architecture review</h3><button type="button" data-copy="#architecture-review">Copy</button></div>
+            <pre id="architecture-review"><code>Review this design before implementation.
+
+Check:
+- missing sequence branches, retries, idempotency, and failure behavior
+- package ownership and dependency direction
+- API, DTO, repository, store, and adapter boundaries
+- migration, rollout, and rollback/forward-fix posture
+- tests or scenarios needed before code starts
+
+Return blocking issues, non-blocking risks, and questions for the human owner.</code></pre>
+          </article>
+        </div>
       </section>
     </main>
+
+    <footer class="footer">
+      <a href="performance.html">Previous: Performance</a>
+      <a href="resources.html#deep-dive-title">Back to Deep Dives</a>
+    </footer>
+    <script src="script.js"></script>
   </body>
 </html>

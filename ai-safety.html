@@ -3,18 +3,76 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=controls-safety.html#safety" />
-    <title>Moved: AI Safety | Agentic SDLC</title>
+    <title>AI Safety Deep Dive | Agentic SDLC</title>
     <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
   </head>
   <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
     <main class="page-shell">
       <section class="page-hero">
-        <p class="eyebrow">Moved</p>
-        <h1>AI safety guidance now lives in Controls & Safety.</h1>
-        <p class="lede">Production authority, credential safety, and risky actions are part of the controls model.</p>
-        <p><a class="button primary" href="controls-safety.html#safety">Open safety controls</a></p>
+        <p class="eyebrow">Deep dive</p>
+        <h1>Prevent the horror-story failure mode structurally.</h1>
+        <p class="lede">
+          Do not rely on the model to be careful with production. Use credentials, wrappers, CI,
+          branch protection, and human gates so destructive actions are unavailable by default.
+        </p>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="threat-title">
+        <div class="section-copy">
+          <p class="eyebrow">Threat model</p>
+          <h2 id="threat-title">Treat prompts, tools, logs, and generated commands as untrusted.</h2>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Untrusted input</h3><p>Issues, webpages, logs, docs, and fixtures can contain prompt injection.</p><small>Read carefully</small></article>
+          <article><span class="step">02</span><h3>Tool proposal</h3><p>Shell, SQL, cloud, migration, and deploy commands are proposals until checked.</p><small>Inspect target</small></article>
+          <article><span class="step">03</span><h3>Human gate</h3><p>Production writes, credential changes, and destructive operations need explicit approval.</p><small>Authority boundary</small></article>
+          <article><span class="step">04</span><h3>Recovery</h3><p>Know how to stop CI, freeze deploys, revoke credentials, and restore data.</p><small>Incident-ready</small></article>
+        </div>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <p class="eyebrow">Default deny</p>
+          <h2>Keep dangerous capability out of normal agent sessions.</h2>
+          <ul>
+            <li>No production database owner credentials.</li>
+            <li>No deploy promotion, traffic shifting, or release publishing authority.</li>
+            <li>No ad hoc SQL against production; require reviewed migration files.</li>
+            <li>No credential rotation, permission expansion, or secret export.</li>
+            <li>No customer data transfer to unapproved tools or model contexts.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Required controls</p>
+          <h2>Make the safe path the easy path.</h2>
+          <ul>
+            <li>Print account, region, cluster, database, role, and branch before risky commands.</li>
+            <li>Use dry-run plans for migrations, IaC, release scripts, and bulk data jobs.</li>
+            <li>Require independent AI security review for trust-boundary changes.</li>
+            <li>Use branch protection so local success cannot bypass review.</li>
+            <li>Document stop, freeze, revoke, rollback, and restore procedures.</li>
+          </ul>
+        </article>
       </section>
     </main>
+
+    <footer class="footer">
+      <a href="agents-md.html">Previous: AGENTS.md</a>
+      <a href="performance.html">Next: Performance</a>
+    </footer>
   </body>
 </html>

@@ -3,18 +3,75 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=lifecycle-guide.html#test" />
-    <title>Moved: Hooks & CI | Agentic SDLC</title>
+    <title>Hooks & CI Deep Dive | Agentic SDLC</title>
     <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
   </head>
   <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
     <main class="page-shell">
       <section class="page-hero">
-        <p class="eyebrow">Moved</p>
-        <h1>Hooks and CI guidance now lives in the Lifecycle guide.</h1>
-        <p class="lede">The test stage owns proof layers, local gates, and CI parity.</p>
-        <p><a class="button primary" href="lifecycle-guide.html#test">Open test guidance</a></p>
+        <p class="eyebrow">Deep dive</p>
+        <h1>Hooks are fast feedback; CI is the enforced contract.</h1>
+        <p class="lede">
+          Agents need the same checks reviewers trust. Local hooks should be quick enough to run
+          repeatedly, while CI owns the non-negotiable gates that determine whether a PR can move on.
+        </p>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="check-ladder-title">
+        <div class="section-copy">
+          <p class="eyebrow">Check ladder</p>
+          <h2 id="check-ladder-title">Run the narrowest proof that can fail, then broaden.</h2>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>During edits</h3><p><code>pnpm fix</code>, focused lint, typecheck, and nearest tests.</p><small>Fast loop</small></article>
+          <article><span class="step">02</span><h3>Before commit</h3><p>Formatting, staged-file checks, generated-file checks, and obvious test targets.</p><small>Local hygiene</small></article>
+          <article><span class="step">03</span><h3>Before push</h3><p>Typecheck, imports, dead code, docs, lockfile, and broader unit coverage.</p><small>PR readiness</small></article>
+          <article><span class="step">04</span><h3>CI parity</h3><p>Full required gates for lint, test layers, coverage, FTA, docs, and migrations.</p><small>Branch rule</small></article>
+        </div>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <p class="eyebrow">Required CI gates</p>
+          <h2>Make metrics enforceable.</h2>
+          <ul>
+            <li>Lint, typecheck, unit tests, integration tests, and functional tests where relevant.</li>
+            <li>Coverage and changed-line coverage thresholds enforced by CI, not just reported.</li>
+            <li>FTA or complexity thresholds with inspectable artifacts.</li>
+            <li>Docs, contracts, generated files, and migration lint for touched areas.</li>
+            <li>AI quality and security review evidence before human approval.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Agent visibility</p>
+          <h2>Publish artifacts agents can use.</h2>
+          <ul>
+            <li>Coverage summaries, changed-line reports, FTA reports, and test logs.</li>
+            <li>Migration lint output and dry-run plans for schema changes.</li>
+            <li>Sticky PR summaries for current check state and reviewer-visible evidence.</li>
+            <li>Clear naming so agents can map a failing job to the local command that reproduces it.</li>
+          </ul>
+        </article>
       </section>
     </main>
+
+    <footer class="footer">
+      <a href="worktrees.html">Previous: Worktrees</a>
+      <a href="agents-md.html">Next: AGENTS.md</a>
+    </footer>
   </body>
 </html>

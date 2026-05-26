@@ -3,18 +3,77 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=lifecycle-guide.html#build" />
-    <title>Moved: Worktrees | Agentic SDLC</title>
+    <title>Worktrees Deep Dive | Agentic SDLC</title>
     <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
   </head>
   <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
     <main class="page-shell">
       <section class="page-hero">
-        <p class="eyebrow">Moved</p>
-        <h1>Worktree guidance now lives in the Lifecycle guide.</h1>
-        <p class="lede">The build stage owns worktree setup and implementation-lane guidance.</p>
-        <p><a class="button primary" href="lifecycle-guide.html#build">Open build guidance</a></p>
+        <p class="eyebrow">Deep dive</p>
+        <h1>Worktrees make agent work isolated and cheap to restart.</h1>
+        <p class="lede">
+          A Git worktree is another checkout of the same repository with its own branch and working
+          directory. For AI coding, it gives each story or review-fix batch a contained execution
+          lane: one task, one branch, one reviewable diff.
+        </p>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="worktree-flow-title">
+        <div class="section-copy">
+          <p class="eyebrow">Operating pattern</p>
+          <h2 id="worktree-flow-title">The spec defines the boundary; the worktree contains the attempt.</h2>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Name the lane</h3><p>Use the ticket or story id in the branch and folder name.</p><small>Traceable work</small></article>
+          <article><span class="step">02</span><h3>Bootstrap quickly</h3><p>Run documented setup only: Node version, pnpm install, local services.</p><small>Repeatable setup</small></article>
+          <article><span class="step">03</span><h3>Bound context</h3><p>Give the agent the ticket, relevant files, diagrams, logs, and expected proof.</p><small>No history dump</small></article>
+          <article><span class="step">04</span><h3>Verify and hand off</h3><p>Run focused checks, summarize evidence, and keep the diff reviewable.</p><small>PR ready</small></article>
+        </div>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <p class="eyebrow">TypeScript setup</p>
+          <h2>Optimize for frequent fresh lanes.</h2>
+          <ul>
+            <li>Load the repo Node version with <code>nvm use</code>.</li>
+            <li>Use the workspace lockfile and shared pnpm store.</li>
+            <li>Keep <code>pnpm install</code> warm-path fast enough that creating a worktree is not a big decision.</li>
+            <li>Document Docker/local service startup for integration and functional lanes.</li>
+            <li>Avoid worktree-local mystery state; setup should be reproducible from repo text.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Parallel agents</p>
+          <h2>Parallelize without edit races.</h2>
+          <ul>
+            <li>Use separate worktrees when multiple agents may edit code.</li>
+            <li>Assign file ownership or task slices before parallel implementation starts.</li>
+            <li>Use read-only subagents freely for investigation and verification.</li>
+            <li>Merge findings through one owner who decides what reaches the PR.</li>
+            <li>Checkpoint before long-running cleanup or multi-agent work.</li>
+          </ul>
+        </article>
       </section>
     </main>
+
+    <footer class="footer">
+      <a href="resources.html#deep-dive-title">Back to Deep Dives</a>
+      <a href="ci-hooks.html">Next: Hooks & CI</a>
+    </footer>
   </body>
 </html>

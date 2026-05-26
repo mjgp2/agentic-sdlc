@@ -3,18 +3,95 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=operating-model.html#agents" />
-    <title>Moved: AGENTS.md | Agentic SDLC</title>
+    <title>AGENTS.md Deep Dive | Agentic SDLC</title>
     <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
   </head>
   <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
     <main class="page-shell">
       <section class="page-hero">
-        <p class="eyebrow">Moved</p>
-        <h1>AGENTS.md guidance now lives in the Operating Model.</h1>
-        <p class="lede">Repo-local agent instructions belong with setup, skills, context, and architecture contracts.</p>
-        <p><a class="button primary" href="operating-model.html#agents">Open AGENTS.md guidance</a></p>
+        <p class="eyebrow">Deep dive</p>
+        <h1>AGENTS.md turns local engineering judgment into executable guidance.</h1>
+        <p class="lede">
+          Put stable repository rules where every agent can read them: setup, architecture
+          boundaries, naming, validation commands, review expectations, and when to stop for humans.
+        </p>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <p class="eyebrow">What belongs there</p>
+          <h2>Encode rules that affect edits.</h2>
+          <ul>
+            <li>Environment setup: Node version, pnpm commands, local services, and test prerequisites.</li>
+            <li>Architecture boundaries: package ownership, DTO location, persistence contracts, and adapter rules.</li>
+            <li>Code shape: naming, SQL command style, logging, comments, and module layout.</li>
+            <li>Verification: fast local checks, CI-parity command, coverage expectations, and PR evidence.</li>
+            <li>Safety: human gates for migrations, production data, deploy promotion, and risk acceptance.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">What does not</p>
+          <h2>Keep always-loaded guidance short.</h2>
+          <ul>
+            <li>Do not paste long tutorials or temporary task context into repo-wide guidance.</li>
+            <li>Move detailed workflows into skills, playbooks, or docs linked from AGENTS.md.</li>
+            <li>Use path-specific guidance only when rules differ by package or subsystem.</li>
+            <li>Retire rules that no longer match the codebase, CI, or review practice.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="prompt-kit" aria-labelledby="agents-example-title">
+        <div>
+          <p class="eyebrow">Example</p>
+          <h2 id="agents-example-title">A compact AGENTS.md skeleton.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>Repo guidance</h3><button type="button" data-copy="#agents-example">Copy</button></div>
+            <pre id="agents-example"><code># Repository Guidance
+
+## Setup
+- Run `nvm use` from the repo root before Node or pnpm commands.
+- Use `pnpm install` with the committed lockfile.
+
+## Architecture
+- Keep public HTTP DTOs in the contract package.
+- Put repository and store interfaces in the ports package.
+- Runtime packages compose adapters; they do not define persistence contracts.
+
+## Validation
+- During implementation, run `pnpm fix`.
+- Before PR handoff, run the focused tests for touched behavior.
+- For high-risk changes, run `pnpm verify:ci`.
+
+## Review
+- PRs must include summary, testing, release impact, docs, and not-tested gaps.
+- Run independent AI quality and security review before human review.
+- Human approval owns merge, risk acceptance, and production promotion.</code></pre>
+          </article>
+        </div>
       </section>
     </main>
+
+    <footer class="footer">
+      <a href="ci-hooks.html">Previous: Hooks & CI</a>
+      <a href="ai-safety.html">Next: AI Safety</a>
+    </footer>
+    <script src="script.js"></script>
   </body>
 </html>

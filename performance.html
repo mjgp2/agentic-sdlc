@@ -3,18 +3,73 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=operating-model.html#performance" />
-    <title>Moved: Performance | Agentic SDLC</title>
+    <title>Performance Deep Dive | Agentic SDLC</title>
     <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
   </head>
   <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
     <main class="page-shell">
       <section class="page-hero">
-        <p class="eyebrow">Moved</p>
-        <h1>Performance guidance now lives in the Operating Model.</h1>
-        <p class="lede">Worktree bootstrap, pnpm stores, and repeated agent loops are operating-model concerns.</p>
-        <p><a class="button primary" href="operating-model.html#performance">Open performance guidance</a></p>
+        <p class="eyebrow">Deep dive</p>
+        <h1>Agent speed is delivery speed when checks run repeatedly.</h1>
+        <p class="lede">
+          AI coding loops are only useful if setup, typecheck, lint, tests, and CI diagnostics are
+          fast enough to repeat. TypeScript monorepos need deliberate pnpm and test-lane design.
+        </p>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="perf-title">
+        <div class="section-copy">
+          <p class="eyebrow">Performance budget</p>
+          <h2 id="perf-title">Optimize the loops agents actually run.</h2>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card"><span class="metric-label">Worktree setup</span><h3>Warm installs</h3><p>Use a shared pnpm store and stable lockfile so fresh worktrees are cheap.</p><code>pnpm store path</code></article>
+          <article class="perf-card"><span class="metric-label">TypeScript</span><h3>Fast feedback</h3><p>Keep focused package typechecks available before broader workspace checks.</p><code>pnpm --filter pkg typecheck</code></article>
+          <article class="perf-card"><span class="metric-label">Tests</span><h3>Parallel lanes</h3><p>Allocate ports, databases, temp paths, and fixtures per lane so suites can run concurrently.</p><code>pnpm test:unit</code></article>
+        </div>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <p class="eyebrow">pnpm posture</p>
+          <h2>Use pnpm’s strengths deliberately.</h2>
+          <ul>
+            <li>Cache the pnpm store in CI with a key based on OS and <code>pnpm-lock.yaml</code>.</li>
+            <li>Use <code>pnpm fetch</code> and offline install flows where container builds matter.</li>
+            <li>Do not casually change linker or TypeScript symlink behavior to paper over bad imports.</li>
+            <li>Track cold and warm install time as part of worktree usability.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Test posture</p>
+          <h2>Make parallelism safe by design.</h2>
+          <ul>
+            <li>Separate unit, integration, and functional commands by resource requirements.</li>
+            <li>Use per-worker database names, ports, temp directories, and queues.</li>
+            <li>Mark truly serialized tests explicitly instead of letting collisions create flakes.</li>
+            <li>Publish timing and failure artifacts so agents can choose the narrowest useful rerun.</li>
+          </ul>
+        </article>
       </section>
     </main>
+
+    <footer class="footer">
+      <a href="ai-safety.html">Previous: AI Safety</a>
+      <a href="architecture.html">Next: Architecture</a>
+    </footer>
   </body>
 </html>
