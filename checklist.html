@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checklist | Agentic SDLC</title>
+    <meta
+      name="description"
+      content="A one-page checklist for applying SDLC-native AI coding from scope through release."
+    />
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a class="active" href="checklist.html">Checklist</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-hero">
+        <p class="eyebrow">One-page checklist</p>
+        <h1>Check the whole AI delivery loop.</h1>
+        <p class="lede">
+          Use this form at story kickoff, before opening a PR, and before release. It condenses
+          the guide into a cross-referenceable set of checks and evidence fields.
+        </p>
+      </section>
+
+      <section class="checklist-sheet" aria-labelledby="delivery-checklist-title">
+        <div class="section-copy">
+          <p class="eyebrow">Delivery form</p>
+          <h2 id="delivery-checklist-title">Story-to-release coverage.</h2>
+          <p>
+            Fill the evidence boxes with links to tickets, specs, commands, CI runs, review notes,
+            screenshots, UAT evidence, or release records. The page stores checkbox and note state
+            locally in this browser.
+          </p>
+        </div>
+
+        <div class="checklist-meta" aria-label="Checklist metadata">
+          <label>
+            <span>Story / PR</span>
+            <input data-store="story-pr" type="text" placeholder="Ticket, branch, or PR link" />
+          </label>
+          <label>
+            <span>Owner</span>
+            <input data-store="owner" type="text" placeholder="Human owner" />
+          </label>
+          <label>
+            <span>Release risk</span>
+            <input data-store="release-risk" type="text" placeholder="Low, medium, high, or notes" />
+          </label>
+        </div>
+
+        <div class="checklist-actions" aria-label="Checklist actions">
+          <button type="button" id="copy-checklist-summary">Copy PR summary</button>
+          <button type="button" id="reset-checklist">Reset this page</button>
+        </div>
+
+        <section class="required-gates" aria-labelledby="required-gates-title">
+          <div>
+            <p class="eyebrow">Required gates</p>
+            <h3 id="required-gates-title">Use this as the actual one-page check.</h3>
+            <p>
+              These are the hard stops. The detailed evidence checklist below is for teams that need
+              a deeper audit trail.
+            </p>
+          </div>
+          <div class="checklist required-checks">
+            <label><input type="checkbox" /> Scope, non-goals, owner, and release intent are clear.</label>
+            <label><input type="checkbox" /> Acceptance scenarios cover success, failure, and edge cases.</label>
+            <label><input type="checkbox" /> Design impact is captured in repo text: ADR, diagram, contract, or migration note.</label>
+            <label><input type="checkbox" /> Agent works in an isolated branch or worktree with bounded context.</label>
+            <label><input type="checkbox" /> No production write credentials or destructive tools are available by default.</label>
+            <label><input type="checkbox" /> Focused local checks pass before broad CI reruns.</label>
+            <label><input type="checkbox" /> CI enforces required lint, typecheck, test, coverage, FTA, docs, and migration gates.</label>
+            <label><input type="checkbox" /> Unit, integration, functional, or UAT proof matches the changed behavior.</label>
+            <label><input type="checkbox" /> Independent AI code-quality review has run.</label>
+            <label><input type="checkbox" /> Independent AI security review has run for material changes.</label>
+            <label><input type="checkbox" /> DB migration lint and specialist review have run when schema or data changes exist.</label>
+            <label><input type="checkbox" /> PR evidence includes summary, tests, risk, docs, release impact, and not-tested gaps.</label>
+            <label><input type="checkbox" /> UAT, rollback/forward-fix, monitoring, and support ownership are named when needed.</label>
+            <label><input type="checkbox" /> Merge, risk acceptance, and production promotion remain human-owned.</label>
+          </div>
+        </section>
+
+        <details class="deep-checklist">
+          <summary>Detailed evidence checklist</summary>
+          <div class="deep-checklist-body">
+
+        <div class="checklist-stage">
+          <div>
+            <span class="step">01</span>
+            <h3>Scope, readiness, and acceptance</h3>
+            <p>Make the task clear enough that an agent can work without expanding the story.</p>
+          </div>
+          <div class="checklist">
+            <label><input type="checkbox" /> Story outcome, user/operator impact, and release intent are clear.</label>
+            <label><input type="checkbox" /> Feasibility, dependencies, compliance/privacy/security requirements, and required reviewer roles are named.</label>
+            <label><input type="checkbox" /> Non-goals and adjacent refactors are explicitly out of scope.</label>
+            <label><input type="checkbox" /> Acceptance scenarios include success, failure, and edge cases.</label>
+            <label><input type="checkbox" /> UAT owner or acceptance path is named when needed.</label>
+          </div>
+          <textarea data-store="scope-evidence" placeholder="Evidence: ticket, feasibility notes, compliance/security requirements, reviewer roles, scenario ids, UAT notes"></textarea>
+        </div>
+
+        <div class="checklist-stage">
+          <div>
+            <span class="step">02</span>
+            <h3>Repo text and architecture</h3>
+            <p>Put the operating context where the agent and reviewers can inspect it.</p>
+          </div>
+          <div class="checklist">
+            <label><input type="checkbox" /> Markdown spec, Mermaid diagram, or scenario file exists for non-trivial work.</label>
+            <label><input type="checkbox" /> Complex behavior has a sequence, state, or workflow diagram; complex persistence has an ERD or database diagram.</label>
+            <label><input type="checkbox" /> Threat model or data-flow diagram exists for auth, personal data, external input, third-party, or trust-boundary changes.</label>
+            <label><input type="checkbox" /> Architecture boundaries, package ownership, and data shape are understood.</label>
+            <label><input type="checkbox" /> Database migrations have a rollback/forward-fix posture and a specialist migration review requirement.</label>
+            <label><input type="checkbox" /> <code>AGENTS.md</code> guidance is current for setup, style, and validation.</label>
+            <label><input type="checkbox" /> Tool-specific rules or instructions are scoped and consistent: <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>.cursor/rules</code>, or Copilot instructions.</label>
+            <label><input type="checkbox" /> Required docs, ADRs, or coverage matrix updates are identified.</label>
+          </div>
+          <textarea data-store="repo-text-evidence" placeholder="Evidence: spec path, sequence/state diagram, database diagram, threat model or DFD, migration plan, AGENTS/rules/instructions notes"></textarea>
+        </div>
+
+        <div class="checklist-stage">
+          <div>
+            <span class="step">03</span>
+            <h3>Agent setup and safety</h3>
+            <p>Constrain the environment before implementation starts.</p>
+          </div>
+          <div class="checklist">
+            <label><input type="checkbox" /> Fresh worktree or isolated branch is used for the task.</label>
+            <label><input type="checkbox" /> Worktree setup is fast and repeatable: <code>nvm use</code>, <code>pnpm install</code>, shared store/cache, and local services are documented.</label>
+            <label><input type="checkbox" /> New worktrees do not require slow bespoke setup beyond documented install/bootstrap commands.</label>
+            <label><input type="checkbox" /> Agent context pack is bounded: ticket, relevant files, diagrams, failing logs, expected outputs, and no unrelated history dump.</label>
+            <label><input type="checkbox" /> Ignore rules block secrets, generated noise, bulky artifacts, and files the agent must not read or edit.</label>
+            <label><input type="checkbox" /> Checkpoint, revert, or clean-diff recovery path exists before long-running or multi-agent work starts.</label>
+            <label><input type="checkbox" /> Parallel agents have separate worktrees or non-overlapping file ownership to avoid edit races.</label>
+            <label><input type="checkbox" /> No production write credentials or destructive tools are available by default.</label>
+            <label><input type="checkbox" /> Risky migrations, IaC, scripts, or data jobs require dry-run and human approval.</label>
+          </div>
+          <textarea data-store="setup-evidence" placeholder="Evidence: worktree path, context pack, ignore rules, checkpoint/revert path, pnpm setup timing, file ownership, safety constraints"></textarea>
+        </div>
+
+        <div class="checklist-stage">
+          <div>
+            <span class="step">04</span>
+            <h3>Implementation and proof</h3>
+            <p>Prove behavior at the right depth instead of relying on model confidence.</p>
+          </div>
+          <div class="checklist">
+            <label><input type="checkbox" /> Diff is small enough to review and maps back to the story.</label>
+            <label><input type="checkbox" /> Unit, integration, functional, or UAT proof matches the changed behavior.</label>
+            <label><input type="checkbox" /> Expected output, screenshot baseline, repro command, or acceptance oracle exists where tests alone are insufficient.</label>
+            <label><input type="checkbox" /> Agent runs the narrowest lint/test loop after edits and uses failures as feedback before broad CI reruns.</label>
+            <label><input type="checkbox" /> Test suites are parallel-safe or explicitly serialized; ports, databases, temp paths, and fixtures do not collide.</label>
+            <label><input type="checkbox" /> Database migration lint/static checks run for schema changes.</label>
+            <label><input type="checkbox" /> CI enforces required gates: lint, typecheck, tests, coverage, changed-line coverage, FTA, docs, and migration lint when applicable.</label>
+            <label><input type="checkbox" /> Agents and reviewers can read CI artifacts: coverage summaries, FTA reports, test logs, migration lint output, and failure details.</label>
+            <label><input type="checkbox" /> Dependency, lockfile, generated artifact, package, or provenance changes are reviewed and traceable.</label>
+            <label><input type="checkbox" /> Not-tested gaps are explicit and proportionate to the risk.</label>
+          </div>
+          <textarea data-store="proof-evidence" placeholder="Evidence: expected outputs/screenshots, repro commands, focused lint/test loops, CI gate links, coverage thresholds, FTA report, migration lint, not-tested gaps"></textarea>
+        </div>
+
+        <div class="checklist-stage">
+          <div>
+            <span class="step">05</span>
+            <h3>Independent review gates</h3>
+            <p>Use AI review as a required signal, then keep approval human-owned.</p>
+          </div>
+          <div class="checklist">
+            <label><input type="checkbox" /> Independent AI code-quality review has run.</label>
+            <label><input type="checkbox" /> Independent AI security review has run for trust boundaries and abuse paths.</label>
+            <label><input type="checkbox" /> Specialist DB migration review has run for schema/data migration changes.</label>
+            <label><input type="checkbox" /> Blocking AI review findings are fixed or explicitly accepted by a human.</label>
+            <label><input type="checkbox" /> Human reviewer can inspect summary, proof, risk, and unresolved gaps.</label>
+          </div>
+          <textarea data-store="review-evidence" placeholder="Evidence: Codex/Cursor review notes, DB migration review, security findings, reviewer decisions"></textarea>
+        </div>
+
+        <div class="checklist-stage">
+          <div>
+            <span class="step">06</span>
+            <h3>PR, UAT, and release</h3>
+            <p>Make release readiness visible before anything is promoted.</p>
+          </div>
+          <div class="checklist">
+            <label><input type="checkbox" /> PR body includes summary, testing, release impact, docs, risks, and not-tested gaps.</label>
+            <label><input type="checkbox" /> UAT evidence or acceptance decision is linked when required.</label>
+            <label><input type="checkbox" /> Rollback, forward-fix, monitoring, support, and vulnerability response notes are documented.</label>
+            <label><input type="checkbox" /> Post-release owner, maintenance feedback path, and follow-up date are named.</label>
+            <label><input type="checkbox" /> Production promotion remains an explicit human-controlled action.</label>
+          </div>
+          <textarea data-store="release-evidence" placeholder="Evidence: PR link, UAT link, release notes, rollback path, monitoring, vulnerability response, maintenance owner"></textarea>
+        </div>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="review-release.html">Previous: Review & Release</a>
+      <a href="resources.html">Next: Resources</a>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

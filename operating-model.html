@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Operating Model | Agentic SDLC</title>
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-hero">
+        <p class="eyebrow">Operating model</p>
+        <h1>Make the agent's way of working explicit.</h1>
+        <p class="lede">
+          AI coding is more reliable when the repository contains the operating contract:
+          environment setup, tool choices, skill usage, and expected evidence.
+        </p>
+      </section>
+
+      <section class="two-column" id="agents">
+        <article id="performance">
+          <p class="eyebrow">AGENTS.md</p>
+          <h2>Repo-local guidance beats repeated prompting.</h2>
+          <ul>
+            <li>Document environment setup such as <code>nvm use</code>, pnpm commands, and local services.</li>
+            <li>Encode architecture rules, naming conventions, package boundaries, and SQL patterns.</li>
+            <li>Specify validation commands and what counts as done.</li>
+            <li>Keep always-loaded guidance short; move path-specific rules or workflow playbooks into scoped files or skills.</li>
+            <li>Keep guidance decision-oriented: rule, reason, proof.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Performance</p>
+          <h2>Optimize the loops agents run repeatedly.</h2>
+          <ul>
+            <li>Use pnpm shared stores, reproducible installs, and documented worktree bootstrap.</li>
+            <li>Keep <code>pnpm install</code> fast enough that fresh worktrees are cheap to create.</li>
+            <li>Separate fast focused checks from full CI parity.</li>
+            <li>Design test commands so independent unit, integration, and functional lanes can run in parallel.</li>
+            <li>Keep typecheck, lint, and test commands documented and stable.</li>
+            <li>Watch warm-loop timings because agent workflows repeat checks frequently.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="two-column" id="agent-context">
+        <article>
+          <p class="eyebrow">Context management</p>
+          <h2>Give the agent the smallest useful context pack.</h2>
+          <ul>
+            <li>Include the ticket, relevant repo text, diagrams, failing logs, expected outputs, and commands.</li>
+            <li>Summarize long threads before handoff instead of pasting the whole conversation history.</li>
+            <li>Use checkpoints or clean commits before long-running agent work so recovery is cheap.</li>
+            <li>Use ignore files to keep secrets, generated noise, and irrelevant bulk out of model context.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Parallel agents</p>
+          <h2>Parallelize investigation without creating edit races.</h2>
+          <ul>
+            <li>Use subagents for read-only investigation, verification, and focused review.</li>
+            <li>Use separate worktrees when multiple agents may edit code.</li>
+            <li>Assign file ownership or task slices before parallel implementation starts.</li>
+            <li>Merge findings through one owner who decides what reaches the PR.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="mode-title">
+        <div class="section-copy">
+          <p class="eyebrow">Mode selection</p>
+          <h2 id="mode-title">Choose the smallest operating mode that fits the work.</h2>
+          <p>
+            The mode is part of the task design. It sets how much planning, specialization,
+            parallelism, and review loop machinery the agent should use.
+          </p>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card"><span class="metric-label">Direct</span><h3>Solo execute</h3><p>Use for scoped, reversible changes where one agent can inspect, edit, verify, and report.</p><small>Default lane</small></article>
+          <article class="perf-card"><span class="metric-label">Skill</span><h3>Named workflow</h3><p>Use for recurring work: code review, security review, PR comment loops, CI repair, cleanup, and quality checks.</p><small>Reusable stop condition</small></article>
+          <article class="perf-card"><span class="metric-label">Plan/team</span><h3>Coordinated work</h3><p>Use planning or team modes when requirements are unclear, risk is high, or independent lanes can run in parallel.</p><small>Higher coordination cost</small></article>
+        </div>
+      </section>
+
+      <section class="quality-ladder" id="skills" aria-labelledby="skills-title">
+        <div class="section-copy">
+          <p class="eyebrow">Skills and loops</p>
+          <h2 id="skills-title">Turn recurring work into named workflows.</h2>
+          <p>
+            Skills and oh-my-codex workflows are useful when they encode repeatable team judgment:
+            PR loops, CI repair, code review, cleanup, security review, and quality checks.
+          </p>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card"><span class="metric-label">PR loop</span><h3>Review feedback</h3><p>Collect comments, fix actionable issues, push, re-check, and stop only when review state is clean.</p></article>
+          <article class="perf-card"><span class="metric-label">Quality loop</span><h3>Self-review</h3><p>Run focused review for bugs, missing tests, architecture drift, and slop before human review.</p></article>
+          <article class="perf-card"><span class="metric-label">CI loop</span><h3>Repair checks</h3><p>Inspect failing jobs, identify the command and failure mode, patch locally, and rerun the right check.</p></article>
+        </div>
+      </section>
+
+      <section class="two-column" id="repo-contract">
+        <article>
+          <p class="eyebrow">Architecture contract</p>
+          <h2>Write rules that constrain actual edits.</h2>
+          <ul>
+            <li>Package ownership: which module owns DTOs, ports, repositories, stores, and runtime composition.</li>
+            <li>Naming: <code>*Service</code>, <code>*Repository</code>, <code>*Store</code>, controller/route suffixes.</li>
+            <li>SQL shape: static commands, bound values, narrow allowlists for dynamic identifiers.</li>
+            <li>Script posture: namespaced scripts under <code>scripts/dev</code>, <code>scripts/test</code>, <code>scripts/quality</code>, and <code>scripts/release</code>.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Commit knowledge</p>
+          <h2>Use commits as decision records.</h2>
+          <ul>
+            <li>Write the first line as intent: why the change exists.</li>
+            <li>Use trailers such as <code>Constraint</code>, <code>Rejected</code>, <code>Tested</code>, and <code>Not-tested</code>.</li>
+            <li>Record rejected alternatives so future agents do not rediscover them.</li>
+            <li>Include forward-looking directives for fragile boundaries or operational constraints.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="prompt-kit" aria-labelledby="operating-prompt-title">
+        <div>
+          <p class="eyebrow">Operating prompt</p>
+          <h2 id="operating-prompt-title">Give the agent the operating lane.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>Agent lane</h3><button type="button" data-copy="#agent-lane-prompt">Copy</button></div>
+            <pre id="agent-lane-prompt"><code>Work from the ticket and repo guidance.
+Use a fresh worktree.
+Follow AGENTS.md for setup, architecture boundaries, and verification.
+Use shared skills for PR review loops, CI repair, and quality checks when applicable.
+Report changed files, checks run, risks, and not-tested gaps.</code></pre>
+          </article>
+          <article class="snippet">
+            <div><h3>Skill request</h3><button type="button" data-copy="#skill-prompt">Copy</button></div>
+            <pre id="skill-prompt"><code>Use the team skill for this workflow.
+State the stopping condition before starting.
+Separate repo-local actionable failures from external blockers.
+After each fix, rerun the narrowest proof that could fail.</code></pre>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="lifecycle-guide.html">Previous: Lifecycle Guide</a>
+      <a href="controls-safety.html">Next: Controls & Safety</a>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

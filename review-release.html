@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Review & Release | Agentic SDLC</title>
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-hero">
+        <p class="eyebrow">Review and release</p>
+        <h1>Make the PR prove the story is ready for human judgment.</h1>
+        <p class="lede">
+          Model confidence is not a release gate. The handoff carries story context, changed
+          files, test evidence, UAT status, risk notes, rollback path, and unresolved gaps.
+        </p>
+      </section>
+
+      <section class="handoff" aria-labelledby="handoff-title">
+        <p class="eyebrow">PR evidence</p>
+        <h2 id="handoff-title">Make the review package easy to audit.</h2>
+        <dl>
+          <div><dt>Summary</dt><dd>What changed and which story outcome it supports.</dd></div>
+          <div><dt>Proof</dt><dd>Commands, test layers, manual checks, and UAT evidence.</dd></div>
+          <div><dt>Risk</dt><dd>Architecture, data, rollout, security, supply-chain, and performance notes.</dd></div>
+          <div><dt>Gaps</dt><dd>Anything not tested, deferred, or requiring human approval.</dd></div>
+        </dl>
+      </section>
+
+      <section class="two-column" id="pr-governance">
+        <article>
+          <p class="eyebrow">PR governance</p>
+          <h2>Make metadata part of the gate.</h2>
+          <ul>
+            <li>Use Conventional Commit style PR titles: <code>type(scope): summary</code>.</li>
+            <li>Keep required body sections: summary, testing, release impact, and docs.</li>
+            <li>Let validation workflows check PR title, description, and release intent.</li>
+            <li>Keep “not tested” explicit instead of hiding verification gaps in prose.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">CI artifacts</p>
+          <h2>Use CI output as review evidence.</h2>
+          <ul>
+            <li>Quality logs and FTA reports explain maintainability gates.</li>
+            <li>Coverage HTML, summaries, and changed-line checks explain unit proof.</li>
+            <li>Integration and functional logs explain environment or runtime failures.</li>
+            <li>Sticky PR comments and dashboards show trend and gate state.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="quality-ladder" id="ai-review" aria-labelledby="ai-review-title">
+        <div class="section-copy">
+          <p class="eyebrow">Required AI reviews</p>
+          <h2 id="ai-review-title">Make independent AI review a PR requirement.</h2>
+          <p>
+            A coding agent that produced the diff should not be the only model that inspects it.
+            Require an independent AI review pass before human approval, and split the review into
+            code quality and security concerns so both get explicit attention.
+          </p>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card">
+            <span class="metric-label">Code quality</span>
+            <h3>Correctness and maintainability</h3>
+            <p>
+              Use Codex, Cursor, or a team review skill to check logic defects, missing tests,
+              unclear names, architecture drift, excessive complexity, and inconsistent TypeScript
+              patterns.
+            </p>
+            <small>Required before human review</small>
+          </article>
+          <article class="perf-card">
+            <span class="metric-label">Security</span>
+            <h3>Trust boundaries and abuse paths</h3>
+            <p>
+              Run a separate security review for auth, data access, injection risk, secrets,
+              dependency changes, unsafe scripts, destructive operations, and production-impacting
+              configuration.
+            </p>
+            <small>Required for every material PR</small>
+          </article>
+          <article class="perf-card">
+            <span class="metric-label">DB migration</span>
+            <h3>Schema and data safety</h3>
+            <p>
+              For migrations, require migration lint/static checks plus a specialist agent review
+              for locking, reversibility, backfill safety, destructive changes, and rollout order.
+            </p>
+            <small>Required for schema/data changes</small>
+          </article>
+          <article class="perf-card">
+            <span class="metric-label">Human gate</span>
+            <h3>AI comments are evidence, not approval</h3>
+            <p>
+              Treat AI review output like CI: useful signal that can block or focus the review.
+              Merge authority, risk acceptance, UAT signoff, and release timing remain human-owned.
+            </p>
+            <small>No auto-merge on model confidence</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="review-loop-title">
+        <div class="section-copy">
+          <p class="eyebrow">Review loop</p>
+          <h2 id="review-loop-title">Use agents to tighten the PR, not to bypass review.</h2>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Self-review</h3><p>Use the agent to find bugs, missing tests, and architecture drift.</p><small>Before human review</small></article>
+          <article><span class="step">02</span><h3>Open PR</h3><p>Attach evidence, risks, docs status, migration notes, and screenshots if needed.</p><small>Reviewer can inspect</small></article>
+          <article><span class="step">03</span><h3>Loop comments</h3><p>Use PR-loop skills to address actionable comments and failing checks.</p><small>Merge remains human-controlled</small></article>
+          <article><span class="step">04</span><h3>Release handoff</h3><p>Prepare UAT status, release notes, monitoring, and rollback or forward-fix path.</p><small>Human-controlled gate</small></article>
+        </div>
+      </section>
+
+      <section class="verification" aria-labelledby="completion-title">
+        <p class="eyebrow">Completion contract</p>
+        <h2 id="completion-title">Done means evidence, acceptance, and a known release path.</h2>
+        <div class="checklist">
+          <label><input type="checkbox" /> Story acceptance criteria are mapped to evidence.</label>
+          <label><input type="checkbox" /> Unit, integration, functional, or UAT proof is appropriate for the risk.</label>
+          <label><input type="checkbox" /> Independent AI code quality and security reviews have run, with blocking findings resolved or explicitly accepted.</label>
+          <label><input type="checkbox" /> DB migration lint and specialist migration review have run when schema or data changes are present.</label>
+          <label><input type="checkbox" /> Dependency, package, artifact, provenance, and lockfile risks are reviewed when touched.</label>
+          <label><input type="checkbox" /> Review comments and CI failures are resolved or explicitly external.</label>
+          <label><input type="checkbox" /> Release, rollback, monitoring, vulnerability response, maintenance owner, and not-tested notes are visible.</label>
+        </div>
+      </section>
+
+      <section class="prompt-kit" aria-labelledby="handoff-prompt-title">
+        <div>
+          <p class="eyebrow">Handoff prompt</p>
+          <h2 id="handoff-prompt-title">Ask the agent for evidence in the PR shape.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>PR package</h3><button type="button" data-copy="#pr-package-prompt">Copy</button></div>
+            <pre id="pr-package-prompt"><code>Prepare the PR handoff.
+Include:
+- Summary mapped to the story outcome.
+- Testing with exact commands and CI artifact references.
+- Independent AI code quality and security review status.
+- DB migration lint and specialist migration review status when applicable.
+- Release impact and docs status.
+- Scenario ids covered and any coverage-matrix updates.
+- Risks, supply-chain/provenance impact, rollback path, vulnerability response, and not-tested gaps.</code></pre>
+          </article>
+          <article class="snippet">
+            <div><h3>Review loop</h3><button type="button" data-copy="#review-loop-prompt">Copy</button></div>
+            <pre id="review-loop-prompt"><code>Address PR feedback in a loop.
+Classify each comment as actionable, ambiguous, or external.
+Patch actionable repo-local issues.
+Rerun the narrowest relevant proof.
+Update the PR evidence before asking for re-review.</code></pre>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="controls-safety.html">Previous: Controls & Safety</a>
+      <a href="checklist.html">Next: Checklist</a>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

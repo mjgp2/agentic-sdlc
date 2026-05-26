@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Controls & Safety | Agentic SDLC</title>
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-hero">
+        <p class="eyebrow">Controls and safety</p>
+        <h1>Give agents clear limits before they touch code or tools.</h1>
+        <p class="lede">
+          Controls route work through the right SDLC gates, constrain production access, and make
+          risky actions explicit.
+        </p>
+      </section>
+
+      <section class="guardrail-lab" aria-labelledby="guardrail-title">
+        <div class="lab-header">
+          <div>
+            <p class="eyebrow">Numeric guardrails</p>
+            <h2 id="guardrail-title">Use numbers to route attention.</h2>
+            <p>
+              FTA, coverage, diff size, boundary churn, and risk level help decide whether a story
+              stays in a solo lane or needs architecture, safety, or review escalation. The numbers
+              should be visible to agents, but hard thresholds belong in CI.
+            </p>
+          </div>
+          <output class="risk-output" id="risk-output" for="fta coverage diff churn">Review required</output>
+        </div>
+        <div class="controls">
+          <label><span>FTA score</span><input id="fta" type="range" min="40" max="220" value="118" /><strong data-value-for="fta">118</strong></label>
+          <label><span>Coverage</span><input id="coverage" type="range" min="40" max="100" value="84" /><strong data-value-for="coverage">84%</strong></label>
+          <label><span>Changed lines</span><input id="diff" type="range" min="20" max="1200" value="280" /><strong data-value-for="diff">280</strong></label>
+          <label><span>Boundary churn</span><input id="churn" type="range" min="0" max="10" value="3" /><strong data-value-for="churn">3</strong></label>
+        </div>
+        <div class="routing" id="routing">
+          <article><h3>Route</h3><p id="route-copy">Solo execute with standard verification.</p></article>
+          <article><h3>Required proof</h3><ul id="proof-list"><li>Typecheck passes.</li><li>Relevant unit tests pass.</li><li>Evidence matches the touched lifecycle stage.</li></ul></article>
+        </div>
+      </section>
+
+      <section class="two-column" id="ci-gates">
+        <article>
+          <p class="eyebrow">CI gates</p>
+          <h2>Make numeric guardrails enforceable.</h2>
+          <ul>
+            <li>Fail CI on required lint, typecheck, test, coverage, changed-line coverage, FTA, docs, and migration-lint gates.</li>
+            <li>Keep thresholds explicit so agents can reason about what must pass before PR handoff.</li>
+            <li>Publish artifacts for coverage, FTA, test logs, and migration checks so failures are inspectable.</li>
+            <li>Treat dashboard-only metrics as advisory unless a CI job or branch rule enforces them.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Agent visibility</p>
+          <h2>Give agents the same evidence reviewers see.</h2>
+          <ul>
+            <li>Expose check names, commands, logs, and artifacts in the PR.</li>
+            <li>Use sticky PR comments or summaries for current gate state.</li>
+            <li>Let agents diagnose failures from artifacts instead of rerunning everything blindly.</li>
+            <li>Require human acceptance for any threshold waiver or temporary bypass.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="two-column" id="safety">
+        <article>
+          <p class="eyebrow">Production safety</p>
+          <h2>Make catastrophic actions structurally unavailable.</h2>
+          <ul>
+            <li>No production write credentials in default agent sessions.</li>
+            <li>Require explicit target display before state-changing commands.</li>
+            <li>Use dry-run plans for migrations, IaC, bulk data jobs, and release scripts.</li>
+            <li>Block destructive commands, credential changes, and deployment promotion without human approval.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Security posture</p>
+          <h2>Treat every input and tool output as untrusted.</h2>
+          <ul>
+            <li>Issues, webpages, logs, docs, and test fixtures can carry prompt injection.</li>
+            <li>Keep secrets out of prompts, screenshots, terminal logs, and PR comments.</li>
+            <li>Review shared skills, MCP servers, package scripts, and downloaded helpers.</li>
+            <li>Document credential revocation, CI stop, deploy freeze, and restore paths.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="handoff" aria-labelledby="deny-title">
+        <p class="eyebrow">Default deny list</p>
+        <h2 id="deny-title">Some actions should never be ambient agent capability.</h2>
+        <dl>
+          <div><dt>Production data writes</dt><dd>No default database owner, queue purge, bucket delete, or bulk update authority.</dd></div>
+          <div><dt>Destructive migrations</dt><dd>No drop, destructive alter, or irreversible backfill without reviewed migration evidence.</dd></div>
+          <div><dt>Credential changes</dt><dd>No token rotation, permission expansion, or secret export from a coding session.</dd></div>
+          <div><dt>Deploy promotion</dt><dd>No production publish, release promotion, or traffic shift without a human-controlled gate.</dd></div>
+          <div><dt>External data transfer</dt><dd>No upload of customer data, logs, or private artifacts to unapproved tools.</dd></div>
+          <div><dt>Policy waiver</dt><dd>No bypass of CI, review, coverage, security, or migration gates without human risk acceptance.</dd></div>
+        </dl>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="trust-title">
+        <div class="section-copy">
+          <p class="eyebrow">Trust boundary</p>
+          <h2 id="trust-title">Keep agent work on the preparation side of the boundary.</h2>
+          <p>
+            Agents can inspect, prepare, test, summarize, and propose. They should not silently cross
+            into production mutation, risk acceptance, or promotion authority.
+          </p>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Agent session</h3><p>Repo, ticket, local tools, isolated branch or worktree.</p><small>Bounded context</small></article>
+          <article><span class="step">02</span><h3>CI evidence</h3><p>Required gates produce logs, coverage, FTA, migration, and review artifacts.</p><small>Enforced checks</small></article>
+          <article><span class="step">03</span><h3>Human gate</h3><p>Reviewer accepts risk, UAT status, release timing, and any waivers.</p><small>Approval boundary</small></article>
+          <article><span class="step">04</span><h3>Production</h3><p>Promotion uses visible target, controlled credentials, monitoring, and recovery path.</p><small>Controlled action</small></article>
+        </div>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="release-control-title">
+        <div class="section-copy">
+          <p class="eyebrow">Release controls</p>
+          <h2 id="release-control-title">Separate agent preparation from production authority.</h2>
+          <p>
+            Agents can prepare release evidence, smoke-test commands, metadata, and rollback notes.
+            Promotion, publishing, credential changes, and production writes stay behind explicit
+            gates.
+          </p>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Dry run</h3><p>Resolve release metadata and surface validation before publishing.</p><small>Prepared by agent</small></article>
+          <article><span class="step">02</span><h3>Stage</h3><p>Use staged release workflows and smoke environments for validation.</p><small>Human-reviewed</small></article>
+          <article><span class="step">03</span><h3>Promote</h3><p>Promotion remains an explicit release action with target visibility.</p><small>Human-controlled</small></article>
+          <article><span class="step">04</span><h3>Recover</h3><p>Document deploy freeze, rollback, credential revocation, and restore paths.</p><small>Incident-ready</small></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="operating-model.html">Previous: Operating Model</a>
+      <a href="review-release.html">Next: Review & Release</a>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

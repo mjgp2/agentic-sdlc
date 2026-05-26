@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resources | Agentic SDLC</title>
+    <meta
+      name="description"
+      content="Example skills, prompts, and repo text templates for SDLC-native AI coding."
+    />
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-hero">
+        <p class="eyebrow">Resources</p>
+        <h1>Example skills, prompts, and repo text.</h1>
+        <p class="lede">
+          Treat these as starting points for team-owned resources. The useful pattern is not the
+          exact wording; it is making repeated agent work explicit, reviewable, and easy to improve.
+        </p>
+      </section>
+
+      <section class="resource-index" aria-labelledby="resource-index-title">
+        <div>
+          <p class="eyebrow">Library map</p>
+          <h2 id="resource-index-title">Start with the artifact you need.</h2>
+        </div>
+        <nav class="resource-links" aria-label="Resource sections">
+          <a href="#skill-title"><span>Skills</span><strong>PR, security, DB migration, CI loops</strong></a>
+          <a href="#template-title"><span>Templates</span><strong>Story specs and PR evidence</strong></a>
+          <a href="#diagram-title"><span>Diagrams</span><strong>Sequence and database examples</strong></a>
+          <a href="#ci-example-title"><span>CI examples</span><strong>Gates agents and reviewers can inspect</strong></a>
+        </nav>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="skill-title">
+        <div class="section-copy">
+          <p class="eyebrow">Example skills</p>
+          <h2 id="skill-title">Create shared workflows for repeated PR work.</h2>
+          <p>
+            Skills are useful when they capture work the team runs again and again: PR cleanup,
+            code review, security review, CI repair, release handoff, and documentation checks.
+            Keep each skill narrow enough that it has a clear stopping condition.
+          </p>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card">
+            <span class="metric-label">PR quality loop</span>
+            <h3>Review, fix, verify</h3>
+            <p>Inspect the diff, find correctness and maintainability issues, patch them, rerun the narrowest proof, and update the PR evidence.</p>
+            <small>Use before human review</small>
+          </article>
+          <article class="perf-card">
+            <span class="metric-label">Security review</span>
+            <h3>Threat-model the change</h3>
+            <p>Check auth, data access, injection, secrets, dependency changes, unsafe scripts, and production-impacting configuration.</p>
+            <small>Run as a separate pass</small>
+          </article>
+          <article class="perf-card">
+            <span class="metric-label">DB migration</span>
+            <h3>Protect schema changes</h3>
+            <p>Run migration lint and specialist review for locking, reversibility, backfills, destructive changes, and rollout order.</p>
+            <small>Required for migrations</small>
+          </article>
+          <article class="perf-card">
+            <span class="metric-label">CI repair</span>
+            <h3>Follow the failing signal</h3>
+            <p>Read failing jobs, reproduce locally when possible, patch the cause, and rerun the check that proved the failure.</p>
+            <small>Stop when checks are clean</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="prompt-kit" id="skill-snippets" aria-labelledby="skill-snippet-title">
+        <div>
+          <p class="eyebrow">Skill snippets</p>
+          <h2 id="skill-snippet-title">Seed a team skill library.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>PR quality skill</h3><button type="button" data-copy="#quality-skill">Copy</button></div>
+            <pre id="quality-skill"><code>name: pr-quality-review
+description: Review a pull request for correctness, maintainability, tests, and architecture drift.
+
+Workflow:
+1. Read the ticket, diff, AGENTS.md, and changed tests.
+2. List findings by severity with file references.
+3. Patch only actionable repo-local issues.
+4. Run the narrowest check that proves each fix.
+5. Report changed files, checks run, remaining risks, and not-tested gaps.</code></pre>
+          </article>
+          <article class="snippet">
+            <div><h3>Security review skill</h3><button type="button" data-copy="#security-skill">Copy</button></div>
+            <pre id="security-skill"><code>name: pr-security-review
+description: Review a pull request for security, privacy, secrets, and production safety risks.
+
+Workflow:
+1. Identify trust boundaries, auth paths, data access, and external inputs.
+2. Check for prompt injection, SQL/script injection, secret leakage, unsafe dependencies, and destructive operations.
+3. Mark each finding as blocking, non-blocking, or requires human risk acceptance.
+4. Do not approve release. Produce evidence for the human reviewer.</code></pre>
+          </article>
+          <article class="snippet">
+            <div><h3>DB migration skill</h3><button type="button" data-copy="#db-migration-skill">Copy</button></div>
+            <pre id="db-migration-skill"><code>name: db-migration-review
+description: Review database migrations for safety, rollout, reversibility, and operational risk.
+
+Workflow:
+1. Read migration files, schema diagrams, affected queries, and rollback/forward-fix notes.
+2. Run or verify migration lint/static checks.
+3. Check locking, long-running operations, backfills, destructive changes, defaults, indexes, and rollout order.
+4. Mark findings as blocking, requires human risk acceptance, or non-blocking.
+5. Produce PR evidence; do not approve production promotion.</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="prompt-kit" id="templates" aria-labelledby="template-title">
+        <div>
+          <p class="eyebrow">Repo text templates</p>
+          <h2 id="template-title">Give agents durable context to work from.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>Story spec</h3><button type="button" data-copy="#story-spec">Copy</button></div>
+            <pre id="story-spec"><code># Story spec
+
+## Outcome
+What user, operator, or system result should change?
+
+## Scope
+- In:
+- Out:
+- Feasibility/dependencies:
+- Compliance/privacy/security requirements:
+- Required reviewers:
+
+## Acceptance scenarios
+- SCN-001:
+- SCN-002:
+
+## Architecture notes
+Boundaries, contracts, data shape, sequence/state diagrams, data-flow/threat model diagrams, database diagrams, migration posture, and rejected options.
+
+## Agent context
+Relevant files, active AGENTS/rules/instructions, ignored paths, expected outputs, failing logs, and checkpoint/revert path.
+
+## Worktree setup
+Node version, pnpm install expectations, shared store/cache assumptions, local services, and known slow steps.
+
+## Verification
+Required CI gates, CI artifacts, unit, integration, functional, UAT, security, DB migration lint/review, supply-chain/provenance review, performance, changed-line coverage, and parallel-test evidence.
+
+## Operations
+Monitoring, rollback or forward-fix, vulnerability response, maintenance owner, and follow-up date.</code></pre>
+          </article>
+          <article class="snippet">
+            <div><h3>PR evidence</h3><button type="button" data-copy="#pr-evidence">Copy</button></div>
+            <pre id="pr-evidence"><code>## Summary
+- Story outcome:
+- Key files:
+
+## Testing
+- Commands:
+- CI gates:
+- CI artifacts:
+- Coverage thresholds:
+- Changed-line coverage:
+- Parallel-safe lanes:
+- Scenario ids:
+- Coverage or proof notes:
+
+## AI reviews
+- Code quality review:
+- Security review:
+- DB migration review:
+
+## Release impact
+- Migration/config/data impact:
+- Dependency/package/provenance impact:
+- Rollback or forward-fix path:
+- Monitoring and vulnerability response:
+- Maintenance owner/follow-up:
+
+## Docs
+- Updated:
+- Not applicable because:
+
+## Not tested
+- Known gaps:</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="prompt-kit" id="diagrams" aria-labelledby="diagram-title">
+        <div>
+          <p class="eyebrow">Diagram examples</p>
+          <h2 id="diagram-title">Keep complex behavior visible as text.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>Sequence diagram</h3><button type="button" data-copy="#sequence-diagram">Copy</button></div>
+            <pre id="sequence-diagram"><code>```mermaid
+sequenceDiagram
+  participant User
+  participant API
+  participant Service
+  participant Database
+  User->>API: Submit request
+  API->>Service: Validate command
+  Service->>Database: Persist state change
+  Database-->>Service: Commit result
+  Service-->>API: Domain outcome
+  API-->>User: Response plus trace id
+```
+
+Review with AI:
+- What retries, idempotency checks, or failure branches are missing?
+- Which participant owns validation, persistence, and audit logging?</code></pre>
+          </article>
+          <article class="snippet">
+            <div><h3>Database diagram</h3><button type="button" data-copy="#database-diagram">Copy</button></div>
+            <pre id="database-diagram"><code>```mermaid
+erDiagram
+  USER ||--o{ STORY : owns
+  STORY ||--o{ ACCEPTANCE_SCENARIO : defines
+  STORY ||--o{ PR_EVIDENCE : proves
+  PR_EVIDENCE }o--|| CI_RUN : references
+```
+
+Migration review:
+- Which table is hot or large?
+- Is the migration backward-compatible during rollout?
+- What is the rollback or forward-fix posture?</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="prompt-kit" id="ci-examples" aria-labelledby="ci-example-title">
+        <div>
+          <p class="eyebrow">CI examples</p>
+          <h2 id="ci-example-title">Make gates enforceable, not advisory.</h2>
+        </div>
+        <div class="snippet-grid">
+          <article class="snippet">
+            <div><h3>Gate matrix</h3><button type="button" data-copy="#gate-matrix">Copy</button></div>
+            <pre id="gate-matrix"><code>| Gate | Enforced where | Artifact |
+| --- | --- | --- |
+| Format/lint/typecheck | pre-push and CI | job log |
+| Unit coverage | CI branch rule | coverage summary |
+| Changed-line coverage | CI branch rule | changed-lines report |
+| FTA/complexity | CI branch rule | FTA report |
+| Migration lint | CI for schema changes | migration output |
+| AI quality review | PR required check/comment | review findings |
+| AI security review | PR required check/comment | risk findings |</code></pre>
+          </article>
+          <article class="snippet">
+            <div><h3>PR evidence contract</h3><button type="button" data-copy="#evidence-contract">Copy</button></div>
+            <pre id="evidence-contract"><code>| Field | Required | Source |
+| --- | --- | --- |
+| Story outcome | Always | ticket/spec |
+| Scenario ids | Behavior change | scenario file/tests |
+| Commands run | Always | local terminal/CI |
+| CI artifacts | Always for PR | CI links |
+| Not-tested gaps | Always | human-readable notes |
+| Release risk | Material changes | owner decision |
+| Rollback/forward-fix | Release impact | runbook/PR |</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="two-column" aria-labelledby="resource-rules-title">
+        <article>
+          <p class="eyebrow">Resource rules</p>
+          <h2 id="resource-rules-title">Keep examples close to real team practice.</h2>
+          <ul>
+            <li>Prefer repo-local Markdown and Mermaid over transient chat instructions.</li>
+            <li>Version skills and templates like code, because they shape code.</li>
+            <li>Document the stop condition for each repeated workflow.</li>
+            <li>Retire examples that no longer match CI, hooks, or architecture guidance.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Useful examples</p>
+          <h2>Point resources at the workflows people actually run.</h2>
+          <ul>
+            <li><code>AGENTS.md</code> for repo-wide operating rules.</li>
+            <li>PR-loop and CI-fix skills for review and check failures.</li>
+            <li>Security-review skills for independent risk inspection.</li>
+            <li>Spec, scenario, coverage, and PR evidence templates.</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="checklist.html">Previous: Checklist</a>
+      <a href="about.html">Next: About</a>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

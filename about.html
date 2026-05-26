@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About | Agentic SDLC</title>
+    <meta
+      name="description"
+      content="About the Agentic SDLC site and contact links for Matthew."
+    />
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a href="resources.html">Resources</a>
+        <a class="active" href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-hero">
+        <p class="eyebrow">About</p>
+        <h1>Why this guide exists.</h1>
+        <p class="lede">
+          I think AI coding is most useful when it strengthens normal engineering discipline
+          instead of bypassing it. This site is a practical guide to keeping specs, architecture,
+          tests, worktrees, review evidence, and release gates visible while using coding agents.
+        </p>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="why-title">
+        <div class="section-copy">
+          <p class="eyebrow">Point of view</p>
+          <h2 id="why-title">The agent should work inside the SDLC, not outside it.</h2>
+          <p>
+            Teams already know how to move a story from scope to requirements, design, build,
+            test, review, UAT, and release. AI coding changes the mechanics of that flow, but it
+            should not remove the need for clear tickets, durable repo text, explicit architecture
+            guidance, automated checks, human review, and production safety controls.
+          </p>
+          <p>
+            The goal of this guide is to show how I structure that work for TypeScript projects:
+            keep context in Markdown, use Mermaid diagrams where they clarify behavior, give
+            agents repo-local instructions, isolate implementation in worktrees, and make every PR
+            carry the evidence a reviewer needs.
+          </p>
+          <p>
+            The material comes from practical delivery patterns I use around TypeScript services,
+            pnpm workspaces, local agent guidance, PR review loops, CI gates, and production-safety
+            controls. It is intentionally opinionated because generic AI coding advice tends to
+            ignore the repo and release mechanics that make teams trust the work.
+          </p>
+        </div>
+      </section>
+
+      <section class="sources contact-panel" aria-labelledby="contact-title">
+        <div class="section-copy">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">Get in touch.</h2>
+          <p>
+            Contact me about AI-assisted engineering practice, TypeScript delivery workflows,
+            repository guidance, and team operating models for coding agents.
+          </p>
+        </div>
+        <ul>
+          <li><a href="mailto:matthew@gizmo.ai">Email: matthew@gizmo.ai</a></li>
+          <li><a href="https://www.linkedin.com/in/matthewjgpainter/">LinkedIn: matthewjgpainter</a></li>
+          <li><a href="https://github.com/mjgp2">GitHub: @mjgp2</a></li>
+          <li><a href="https://mjgp2.github.io/">Website: mjgp2.github.io</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="resources.html">Previous: Resources</a>
+      <a href="index.html">Overview</a>
+    </footer>
+  </body>
+</html>

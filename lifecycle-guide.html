@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lifecycle Guide | Agentic SDLC</title>
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span><strong>Agentic SDLC</strong><small>AI coding inside the SDLC</small></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a class="active" href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-hero">
+        <p class="eyebrow">Lifecycle guide</p>
+        <h1>Follow the SDLC, then add AI-specific operating detail.</h1>
+        <p class="lede">
+          A user story moves through requirements, design, build, test, and acceptance. Each step
+          produces repo text the agent can use and evidence reviewers can inspect.
+        </p>
+      </section>
+
+      <section class="spec-surface" id="requirements" aria-labelledby="requirements-title">
+        <div class="section-copy">
+          <p class="eyebrow">Requirements</p>
+          <h2 id="requirements-title">The ticket is the contract.</h2>
+          <p>
+            Use Jira, Linear, or a repo-local issue template to capture outcome, scope, non-goals,
+            acceptance criteria, feasibility, reviewer roles, risk, and verification commands. Use
+            the agent to challenge gaps before implementation instead of discovering ambiguity in
+            the diff.
+          </p>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Story outcome</h3><p>Describe the user or operator result alongside the expected code scope.</p><small>Classic SDLC: requirements</small></article>
+          <article><span class="step">02</span><h3>Acceptance</h3><p>Write success and failure behavior as testable scenario bullets.</p><small>Agent use: scenario expansion</small></article>
+          <article><span class="step">03</span><h3>Readiness</h3><p>Name feasibility constraints, dependencies, compliance/security needs, and required reviewers.</p><small>Gate: risk fit</small></article>
+          <article><span class="step">04</span><h3>Verification</h3><p>List expected checks, proof layer, and manual/UAT evidence.</p><small>Gate: ready for agent</small></article>
+        </div>
+      </section>
+
+      <section class="two-column" id="design">
+        <article>
+          <p class="eyebrow">Design</p>
+          <h2>Put architecture where the agent will read it.</h2>
+          <ul>
+            <li>Keep ADRs, contracts, boundary rules, and Mermaid diagrams in the repo.</li>
+            <li>Ask AI to review sequence diagrams for missing branches, retries, and ownership confusion.</li>
+            <li>Add data-flow diagrams and threat models when the change touches trust boundaries.</li>
+            <li>Use database diagrams or ERDs when persistence, migrations, or ownership of tables changes.</li>
+            <li>Require specialist DB migration review for schema changes, backfills, data movement, or destructive operations.</li>
+            <li>Use <code>AGENTS.md</code> to turn architecture choices into edit-time rules.</li>
+            <li>Require a design gate when the story changes persistence, APIs, auth, or package boundaries.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Text artifacts</p>
+          <h2>Prefer durable text over transient chat context.</h2>
+          <ul>
+            <li>Markdown spec: problem, constraints, acceptance, non-goals.</li>
+            <li>Mermaid diagram: workflow, sequence, state, dependency, data flow, threat model, or database shape.</li>
+            <li>Scenario file: actors, setup, actions, assertions, negative paths.</li>
+            <li>Architecture note: decision, rejected alternatives, proof required.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="artifact-title">
+        <div class="section-copy">
+          <p class="eyebrow">Repo artifact model</p>
+          <h2 id="artifact-title">Make the agent read the same durable context as the team.</h2>
+          <p>
+            Treat these files as the story's source material. The agent can summarize them,
+            challenge gaps, update them with the implementation, and link them in the PR.
+          </p>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card"><span class="metric-label">Intent</span><h3>Ticket, spec, scenarios</h3><p>Outcome, non-goals, acceptance criteria, scenario ids, actors, setup, actions, assertions, and negative paths.</p></article>
+          <article class="perf-card"><span class="metric-label">Design</span><h3>Tech design, ADRs, Mermaid</h3><p>Package ownership, sequence flows, state changes, rejected options, data contracts, migration posture, and DB review needs.</p></article>
+          <article class="perf-card"><span class="metric-label">Operations</span><h3>AGENTS.md, runbooks, coverage matrix</h3><p>Agent rules, setup commands, verification expectations, UAT evidence, monitoring, response, and workflow coverage notes.</p></article>
+        </div>
+      </section>
+
+      <section class="two-column" id="scenarios">
+        <article>
+          <p class="eyebrow">Scenario to proof</p>
+          <h2>Carry scenario ids through implementation and review.</h2>
+          <ul>
+            <li><strong>Scenario id:</strong> stable reference in ticket, scenario file, tests, and PR body.</li>
+            <li><strong>Behavior:</strong> actor, preconditions, action, expected result, and side effects.</li>
+            <li><strong>Proof layer:</strong> unit, integration, functional, manual, or UAT.</li>
+            <li><strong>Trace:</strong> test name, PR evidence, and coverage-matrix entry reference the scenario.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Coverage matrix</p>
+          <h2>Use the matrix to prevent scenario drift.</h2>
+          <ul>
+            <li>Update the coverage matrix when workflow behavior changes.</li>
+            <li>Mark which scenarios are covered by unit, integration, functional, or UAT evidence.</li>
+            <li>Record intentional gaps with a reason and owner.</li>
+            <li>Use the matrix as PR review input, not just a post-release document.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="quality-ladder" id="build" aria-labelledby="build-title">
+        <div class="section-copy">
+          <p class="eyebrow">Build</p>
+          <h2 id="build-title">Use a worktree as the implementation lane.</h2>
+          <p>
+            A worktree gives the agent an isolated checkout tied to the story. It keeps local state,
+            branch state, dependency installation, and generated files separate from other work.
+          </p>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Create lane</h3><p>Branch and worktree named for the ticket or story id.</p><small>No unrelated dirty files</small></article>
+          <article><span class="step">02</span><h3>Implement</h3><p>Make the smallest coherent TypeScript diff and update repo text.</p><small>Keep scope visible</small></article>
+          <article><span class="step">03</span><h3>Repair fast</h3><p>Run format, lint, typecheck, and focused tests while the diff is small.</p><small>Fast local loop</small></article>
+          <article><span class="step">04</span><h3>Package proof</h3><p>Prepare changed-file summary, test evidence, risks, and not-tested gaps.</p><small>Ready for review</small></article>
+        </div>
+      </section>
+
+      <section class="two-column" id="worktree-setup">
+        <article>
+          <p class="eyebrow">Worktree setup</p>
+          <h2>Give each lane a reproducible local environment.</h2>
+          <ul>
+            <li>Load the repo Node version with <code>nvm use</code> before Node or pnpm commands.</li>
+            <li>Use <code>pnpm install</code> with the workspace lockfile and shared store assumptions.</li>
+            <li>Keep new worktree bootstrap fast: shared pnpm store, stable lockfile, documented local service setup.</li>
+            <li>Let post-checkout hooks install or verify worktree dependencies when configured.</li>
+            <li>Use Docker-backed dependencies for integration and functional test lanes.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">Local gates</p>
+          <h2>Run the narrowest proof that can fail.</h2>
+          <ul>
+            <li><code>pnpm fix</code> for formatting and lint repair during implementation.</li>
+            <li><code>pnpm verify:pre-commit</code> for staged snapshot safety.</li>
+            <li><code>pnpm verify:pre-push</code> for push-safe repository checks.</li>
+            <li><code>pnpm verify:ci</code> for local CI parity before high-risk handoff.</li>
+            <li>Run database migration lint/static checks whenever schema or data migrations change.</li>
+            <li>Document which checks can run in parallel and which need serialized ports, databases, or fixtures.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="ci-grid" id="test" aria-labelledby="test-title">
+        <div class="section-copy">
+          <p class="eyebrow">Test</p>
+          <h2 id="test-title">Match the proof layer to the behavior being changed.</h2>
+          <p>
+            Unit, integration, functional, and UAT checks answer different questions. Coverage is
+            useful, but it is only one signal inside a broader proof package. Make required
+            thresholds CI-enforced, then publish the artifacts agents and reviewers need to inspect
+            failures.
+          </p>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card"><span class="metric-label">Unit</span><h3>Logic in isolation</h3><p>Use for validation, mapping, parsers, reducers, negative branches, and small services.</p><small>Fast and numerous</small></article>
+          <article class="perf-card"><span class="metric-label">Integration</span><h3>Pieces cooperating</h3><p>Use for repositories, adapters, HTTP contracts, migrations, serialization, and package boundaries. Keep resources isolated so suites can run in parallel.</p><small>Proves wiring</small></article>
+          <article class="perf-card"><span class="metric-label">Functional</span><h3>Workflow from outside</h3><p>Use for API, CLI, worker, browser, or service flows that prove a user/operator scenario. Allocate ports, databases, and temp paths per lane.</p><small>Proves acceptance</small></article>
+        </div>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="verification-ladder-title">
+        <div class="section-copy">
+          <p class="eyebrow">Verification ladder</p>
+          <h2 id="verification-ladder-title">Map repo scripts to SDLC proof.</h2>
+        </div>
+        <div class="flow-line">
+          <article><span class="step">01</span><h3>Quality</h3><p><code>pnpm verify:quality</code> checks format, lint, TSDoc, typecheck, imports, dead code, and FTA.</p><small>Design/build hygiene</small></article>
+          <article><span class="step">02</span><h3>Unit</h3><p><code>pnpm verify:unit</code> runs coverage, changed-line coverage, summary, and threshold checks that CI should enforce.</p><small>Logic proof</small></article>
+          <article><span class="step">03</span><h3>Integration</h3><p><code>pnpm verify:integration</code> runs database unit and integration suites.</p><small>Wiring proof</small></article>
+          <article><span class="step">04</span><h3>Functional</h3><p><code>pnpm verify:functional</code> runs runtime topology checks.</p><small>Workflow proof</small></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="index.html">Overview</a>
+      <a href="operating-model.html">Next: Operating Model</a>
+    </footer>
+  </body>
+</html>

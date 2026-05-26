@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agentic SDLC | AI coding inside the software delivery lifecycle</title>
+    <meta
+      name="description"
+      content="Agentic SDLC is a practical TypeScript guide for using AI coding agents inside the software delivery lifecycle: specs, worktrees, guardrails, review, UAT, and release."
+    />
+    <link rel="stylesheet" href="styles.css?v=agentic-sdlc-20260526" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Agentic SDLC home">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span>
+          <strong>Agentic SDLC</strong>
+          <small>AI coding inside the SDLC</small>
+        </span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a class="active" href="index.html">Overview</a>
+        <a href="lifecycle-guide.html">Lifecycle</a>
+        <a href="checklist.html">Checklist</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="page-shell home-shell">
+      <section class="page-hero home-hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Agentic SDLC</p>
+          <h1 id="page-title">Adopt AI coding without abandoning the SDLC.</h1>
+          <p class="lede">
+            A practical operating model for turning each SDLC step into repo text, an agent task,
+            and a gate reviewers can audit.
+          </p>
+          <div class="hero-points" aria-label="Core outcomes">
+            <span>Readable specs</span>
+            <span>Bounded agent work</span>
+            <span>Reviewable evidence</span>
+          </div>
+          <div class="quick-actions" aria-label="Quick actions">
+            <a class="button primary" href="#sdlc-title">View the mapping</a>
+            <a class="button" href="checklist.html">Use the checklist</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="method-definition" aria-labelledby="method-title">
+        <div>
+          <p class="eyebrow">The method</p>
+          <h2 id="method-title">Agentic SDLC means the agent works inside delivery controls.</h2>
+          <p>
+            The core move is simple: turn each lifecycle step into repo text, give the agent an
+            isolated lane to act in, enforce objective gates in CI, require independent review, and
+            keep production authority human-owned.
+          </p>
+        </div>
+        <div class="definition-stack" aria-label="Agentic SDLC definition">
+          <span>Repo text</span>
+          <span>Worktree lane</span>
+          <span>CI gates</span>
+          <span>AI review</span>
+          <span>Human release</span>
+        </div>
+      </section>
+
+      <section class="failure-grid" aria-labelledby="failure-title">
+        <div class="section-copy">
+          <p class="eyebrow">Why it exists</p>
+          <h2 id="failure-title">Unmanaged AI coding does not fail politely.</h2>
+          <p>
+            The risk is not that the agent writes code. The risk is that it writes code outside the
+            team’s normal contract: no clear scope, no durable design context, no reproducible proof,
+            no independent review, and no controlled release path.
+          </p>
+        </div>
+        <div class="failure-list">
+          <article><strong>Scope expands silently</strong><span>The agent fixes adjacent problems because the ticket did not name non-goals.</span></article>
+          <article><strong>Architecture drifts</strong><span>Package boundaries, data ownership, and migration posture live in someone’s head.</span></article>
+          <article><strong>Proof is theatrical</strong><span>Coverage exists, but scenarios, negative paths, CI artifacts, and UAT evidence do not line up.</span></article>
+          <article><strong>Release risk hides</strong><span>Credentials, migrations, deploy promotion, and rollback are treated as implementation details.</span></article>
+        </div>
+      </section>
+
+      <section class="quality-ladder" aria-labelledby="adoption-title">
+        <div class="section-copy">
+          <p class="eyebrow">Adoption path</p>
+          <h2 id="adoption-title">You do not need the whole model on day one.</h2>
+          <p>
+            Start by making one user story legible to an agent and a reviewer. Add gates as risk,
+            team size, and production exposure increase.
+          </p>
+        </div>
+        <div class="perf-grid">
+          <article class="perf-card"><span class="metric-label">Solo baseline</span><h3>Repo text and proof</h3><p>Use a clear ticket, bounded context, focused tests, and an explicit PR evidence note.</p><small>Good first step</small></article>
+          <article class="perf-card"><span class="metric-label">Team loop</span><h3>Worktrees and shared skills</h3><p>Standardize AGENTS.md, worktree setup, PR loops, code review, and security review prompts.</p><small>Repeatable delivery</small></article>
+          <article class="perf-card"><span class="metric-label">CI enforced</span><h3>Make gates objective</h3><p>Enforce lint, typecheck, tests, coverage, changed-line coverage, FTA, docs, and migration lint.</p><small>Branch protection ready</small></article>
+          <article class="perf-card"><span class="metric-label">Production safe</span><h3>Separate preparation from authority</h3><p>Keep credentials, deploy promotion, migrations, and risk acceptance behind explicit human gates.</p><small>Regulated enough to trust</small></article>
+        </div>
+      </section>
+
+      <section class="lifecycle-map" aria-labelledby="sdlc-title">
+        <div class="lifecycle-intro">
+          <p class="eyebrow">Classic SDLC mapping</p>
+          <h2 id="sdlc-title">One user story, two synchronized tracks.</h2>
+          <p>
+            The classic track still owns intent and approval. The AI-agent track turns repo text
+            into implementation work, verification, and PR evidence.
+          </p>
+        </div>
+
+        <div class="agentic-flow" aria-label="User story delivery flow mapped to AI-agent work">
+          <div class="classic-track">
+            <span>Scope</span>
+            <span>Specify</span>
+            <span>Design</span>
+            <span>Build</span>
+            <span>Test</span>
+            <span>Review, UAT, release</span>
+          </div>
+          <div class="agent-track">
+            <span>Clarify gaps</span>
+            <span>Expand scenarios</span>
+            <span>Check architecture</span>
+            <span>Worktree implementation</span>
+            <span>Run proof ladder</span>
+            <span>Package PR evidence</span>
+          </div>
+          <p>
+            The classic track still owns intent and approval. The agent track supplies acceleration,
+            analysis, implementation, and evidence inside that track.
+          </p>
+        </div>
+
+        <div class="lifecycle-table" role="table" aria-label="Classic SDLC mapped to AI-agent workflow">
+          <div class="lifecycle-row lifecycle-head" role="row">
+            <div role="columnheader">Classic SDLC step</div>
+            <div role="columnheader">Repo text artifact</div>
+            <div role="columnheader">AI-agent use</div>
+            <div role="columnheader">Gate before moving on</div>
+          </div>
+          <article class="lifecycle-row" role="row">
+            <div role="cell"><span class="cell-label">Classic SDLC</span><strong>01 Scope the story</strong><p>Define outcome, users, non-goals, risk, and release intent.</p></div>
+            <div role="cell"><span class="cell-label">Repo text</span>Ticket, brief, linked context.</div>
+            <div role="cell"><span class="cell-label">Agent use</span>Draft clarifying questions, identify missing constraints, and summarize the intended change.</div>
+            <div role="cell"><span class="cell-label">Gate</span>Story is ready; ambiguity is resolved or explicitly parked.</div>
+          </article>
+          <article class="lifecycle-row" role="row">
+            <div role="cell"><span class="cell-label">Classic SDLC</span><strong>02 Specify behavior</strong><p>Turn acceptance criteria into scenarios and edge cases.</p></div>
+            <div role="cell"><span class="cell-label">Repo text</span>Markdown spec, scenario ids, Mermaid flows.</div>
+            <div role="cell"><span class="cell-label">Agent use</span>Expand bullets into testable scenarios and review diagrams for missing branches.</div>
+            <div role="cell"><span class="cell-label">Gate</span>Scenarios are reviewable and map to acceptance criteria.</div>
+          </article>
+          <article class="lifecycle-row" role="row">
+            <div role="cell"><span class="cell-label">Classic SDLC</span><strong>03 Design the change</strong><p>Choose boundaries, contracts, data shape, and migration approach.</p></div>
+            <div role="cell"><span class="cell-label">Repo text</span>ADRs, contracts, AGENTS.md, architecture notes.</div>
+            <div role="cell"><span class="cell-label">Agent use</span>Check fit against repo guidance and compare options before implementation.</div>
+            <div role="cell"><span class="cell-label">Gate</span>Architecture risk and ownership are understood.</div>
+          </article>
+          <article class="lifecycle-row" role="row">
+            <div role="cell"><span class="cell-label">Classic SDLC</span><strong>04 Build in isolation</strong><p>Implement the smallest coherent diff.</p></div>
+            <div role="cell"><span class="cell-label">Repo text</span>Worktree, branch, task prompt, local guidance.</div>
+            <div role="cell"><span class="cell-label">Agent use</span>Write TypeScript, update docs, and create tests from scenario intent.</div>
+            <div role="cell"><span class="cell-label">Gate</span>Focused checks pass and the diff remains reviewable.</div>
+          </article>
+          <article class="lifecycle-row" role="row">
+            <div role="cell"><span class="cell-label">Classic SDLC</span><strong>05 Verify behavior</strong><p>Prove the story at the right depth.</p></div>
+            <div role="cell"><span class="cell-label">Repo text</span>Unit, integration, functional, and UAT scenario references.</div>
+            <div role="cell"><span class="cell-label">Agent use</span>Run the check ladder, diagnose failures, and link proof back to scenarios.</div>
+            <div role="cell"><span class="cell-label">Gate</span>Proof is layered; coverage is one signal, not the whole answer.</div>
+          </article>
+          <article class="lifecycle-row" role="row">
+            <div role="cell"><span class="cell-label">Classic SDLC</span><strong>06 Review and release</strong><p>Prepare the PR, UAT handoff, release notes, and rollback path.</p></div>
+            <div role="cell"><span class="cell-label">Repo text</span>PR body, runbook, changelog, release checklist.</div>
+            <div role="cell"><span class="cell-label">Agent use</span>Summarize evidence, handle PR loops, draft notes, and verify promotion prerequisites.</div>
+            <div role="cell"><span class="cell-label">Gate</span>Human review, UAT acceptance, and release approval remain explicit.</div>
+          </article>
+        </div>
+
+        <div class="lifecycle-notes">
+          <article>
+            <p class="eyebrow">Text-first rule</p>
+            <h3>Put the agent's operating context in the repo.</h3>
+            <p>Use Markdown specs, Mermaid diagrams, scenarios, ADRs, AGENTS.md, runbooks, and prompt kits so the agent reads the same reviewable source material as the team.</p>
+          </article>
+          <article>
+            <p class="eyebrow">Power-ups</p>
+            <h3>Use tools to reinforce the flow.</h3>
+            <p>Worktrees, skills, oh-my-codex loops, guardrails, hooks, CI, and safety controls are accelerators for this map, not a replacement for the map.</p>
+          </article>
+        </div>
+
+        <div class="learning-path" aria-labelledby="learning-path-title">
+          <div>
+            <p class="eyebrow">Read next</p>
+            <h2 id="learning-path-title">Navigate by SDLC stage.</h2>
+            <p>Each page anchors AI-specific practices to delivery work the team already owns.</p>
+          </div>
+          <div class="learning-links">
+            <a href="lifecycle-guide.html#requirements"><span>Requirements</span><strong>Specs, tickets, scenarios</strong></a>
+            <a href="lifecycle-guide.html#design"><span>Design</span><strong>Architecture and diagrams</strong></a>
+            <a href="lifecycle-guide.html#build"><span>Build</span><strong>Worktrees and implementation</strong></a>
+            <a href="lifecycle-guide.html#test"><span>Test</span><strong>Proof layers and CI</strong></a>
+            <a href="operating-model.html"><span>Operate</span><strong>Worktrees, AGENTS.md, skills</strong></a>
+            <a href="review-release.html"><span>Review + Release</span><strong>PR handoff and UAT</strong></a>
+            <a href="controls-safety.html"><span>Control</span><strong>Guardrails and safety</strong></a>
+            <a href="checklist.html"><span>Checklist</span><strong>One-page delivery form</strong></a>
+            <a href="resources.html"><span>Resources</span><strong>Skills, prompts, templates</strong></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Built as a static guide.</span>
+      <a href="lifecycle-guide.html">Next: Lifecycle Guide</a>
+    </footer>
+  </body>
+</html>
