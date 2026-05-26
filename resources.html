@@ -61,9 +61,9 @@
         <div class="perf-grid">
           <article class="perf-card">
             <span class="metric-label">PR quality loop</span>
-            <h3>Review, fix, verify</h3>
-            <p>Inspect the diff, find correctness and maintainability issues, patch them, rerun the narrowest proof, and update the PR evidence.</p>
-            <small>Use before human review</small>
+            <h3>Harden after opening</h3>
+            <p>After the PR exists, clean slop, run code review, fix actionable findings, update PR evidence, monitor CI, and stop only when no AI comments need action.</p>
+            <small>Required before human review</small>
           </article>
           <article class="perf-card">
             <span class="metric-label">Security review</span>
@@ -94,15 +94,16 @@
         <div class="snippet-grid">
           <article class="snippet">
             <div><h3>PR quality skill</h3><button type="button" data-copy="#quality-skill">Copy</button></div>
-            <pre id="quality-skill"><code>name: pr-quality-review
-description: Review a pull request for correctness, maintainability, tests, and architecture drift.
+            <pre id="quality-skill"><code>name: pr-quality-loop
+description: Harden a pull request before human review by cleaning slop, reviewing the diff, fixing actionable findings, updating PR evidence, and checking CI/review state.
 
 Workflow:
-1. Read the ticket, diff, AGENTS.md, and changed tests.
-2. List findings by severity with file references.
-3. Patch only actionable repo-local issues.
-4. Run the narrowest check that proves each fix.
-5. Report changed files, checks run, remaining risks, and not-tested gaps.</code></pre>
+1. Identify the PR scope, changed files, repo guidance, and relevant test tiers.
+2. Clean obvious slop without broadening beyond the PR diff.
+3. Run independent code review and fix actionable repo-local findings.
+4. Update the PR body with cleanup, fixes, tests, risks, and not-tested gaps.
+5. Inspect CI and review state; loop until checks pass and no actionable AI findings remain.
+6. Stop before merge. Human review, risk acceptance, and release authority remain human-owned.</code></pre>
           </article>
           <article class="snippet">
             <div><h3>Security review skill</h3><button type="button" data-copy="#security-skill">Copy</button></div>
