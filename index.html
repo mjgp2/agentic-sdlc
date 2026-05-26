@@ -128,7 +128,7 @@
             <span>Check architecture</span>
             <span>Worktree implementation</span>
             <span>Run proof ladder</span>
-            <span>PR quality loop</span>
+            <span>Clean, review, verify PR</span>
           </div>
           <p>
             The classic track still owns intent and approval. The agent track supplies acceleration,
@@ -176,7 +176,7 @@
           <article class="lifecycle-row" role="row">
             <div role="cell"><span class="cell-label">Classic SDLC</span><strong>06 Review and release</strong><p>Open the PR, harden it, handle human review, then prepare UAT and release.</p></div>
             <div role="cell"><span class="cell-label">Repo text</span>PR body, review comments, runbook, changelog, release checklist.</div>
-            <div role="cell"><span class="cell-label">Agent use</span>Run the PR quality loop, fix actionable review comments, reply with evidence, and verify promotion prerequisites.</div>
+            <div role="cell"><span class="cell-label">Agent use</span>Run a PR quality loop: clean obvious slop, run AI review, fix actionable findings, update evidence, check CI, then fix human review comments with replies.</div>
             <div role="cell"><span class="cell-label">Gate</span>No unresolved AI-loop findings; human review, UAT acceptance, and release approval remain explicit.</div>
           </article>
         </div>
@@ -186,16 +186,17 @@
             <p class="eyebrow">Post-PR hardening</p>
             <h2 id="pr-loop-title">The PR is not ready for human review just because it exists.</h2>
             <p>
-              After opening the PR, run a quality loop first: clean obvious slop, run an independent
-              code review, update the PR evidence, inspect CI, and stop only when there are no
-              actionable AI findings left. Then the human reviewer uses GitHub normally, and the
-              agent fixes and replies to those comments before re-review.
+              After opening the PR, run a quality loop first. In this guide that means: clean
+              obvious slop, run an independent AI code review, fix actionable findings, update the
+              PR evidence, inspect CI, and stop only when there are no AI findings that still need
+              action. Then the human reviewer uses GitHub normally, and the agent fixes and replies
+              to those comments before re-review.
             </p>
           </div>
           <div class="flow-line">
             <article><span class="step">01</span><h3>Open PR</h3><p>Attach the story, proof, risk, docs, and release impact.</p><small>Initial handoff</small></article>
-            <article><span class="step">02</span><h3>Run PR quality loop</h3><p>Clean slop, run AI code review, fix findings, update metadata, and monitor CI.</p><small>Before human review</small></article>
-            <article><span class="step">03</span><h3>Clear AI findings</h3><p>Stop only when required checks pass and no actionable AI comments remain.</p><small>Evidence ready</small></article>
+            <article><span class="step">02</span><h3>Clean, review, verify</h3><p>Clean slop, run AI code review, fix findings, update metadata, and monitor CI.</p><small>PR quality loop</small></article>
+            <article><span class="step">03</span><h3>Clear AI findings</h3><p>Stop only when required checks pass and no AI findings still need action.</p><small>Evidence ready</small></article>
             <article><span class="step">04</span><h3>Human GitHub review</h3><p>The reviewer reads the PR normally and leaves comments or requested changes.</p><small>Human judgment</small></article>
             <article><span class="step">05</span><h3>Agent fixes comments</h3><p>The agent patches actionable feedback, reruns proof, replies, and requests re-review.</p><small>Review loop</small></article>
             <article><span class="step">06</span><h3>Release gate</h3><p>Merge, UAT acceptance, and promotion remain explicit human-controlled actions.</p><small>No auto-merge</small></article>
