@@ -124,15 +124,15 @@
           <p>
             The post-PR agent loop is a hardening step: cleanup, independent code review, CI repair,
             PR body updates, and review-state checks. It should finish with no AI findings that
-            still need action. After that, the human reviewer uses GitHub normally, leaves comments,
-            and asks the agent to fix and reply with evidence before re-review.
+            still need action. After that, the human reviewer uses the normal PR review system,
+            leaves comments, and asks the agent to fix and reply with evidence before re-review.
           </p>
         </div>
         <div class="flow-line">
           <article><span class="step">01</span><h3>Open PR</h3><p>Attach evidence, risks, docs status, migration notes, and screenshots if needed.</p><small>Reviewer can inspect</small></article>
           <article><span class="step">02</span><h3>Clean, review, verify</h3><p>Compose cleanup, code review, PR metadata updates, CI monitoring, and review-state checks.</p><small>PR quality loop</small></article>
           <article><span class="step">03</span><h3>Clear AI findings</h3><p>Fix actionable findings and stop only when checks pass and no AI findings still need action.</p><small>Ready for human review</small></article>
-          <article><span class="step">04</span><h3>Human review</h3><p>The human reviewer reads the PR normally and leaves comments or requested changes in GitHub.</p><small>Human judgment</small></article>
+          <article><span class="step">04</span><h3>Human review</h3><p>The human reviewer reads the PR normally and leaves comments or requested changes in the review system.</p><small>Human judgment</small></article>
           <article><span class="step">05</span><h3>Fix and reply</h3><p>Ask the agent to patch actionable comments, rerun proof, reply, and request re-review.</p><small>Evidence-backed replies</small></article>
           <article><span class="step">06</span><h3>Release handoff</h3><p>Prepare UAT status, release notes, monitoring, and rollback or forward-fix path.</p><small>Human-controlled gate</small></article>
         </div>

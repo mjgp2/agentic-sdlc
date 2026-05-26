@@ -189,15 +189,15 @@
               After opening the PR, run a quality loop first. In this guide that means: clean
               obvious slop, run an independent AI code review, fix actionable findings, update the
               PR evidence, inspect CI, and stop only when there are no AI findings that still need
-              action. Then the human reviewer uses GitHub normally, and the agent fixes and replies
-              to those comments before re-review.
+              action. Then the human reviewer uses the normal PR review system, and the agent fixes
+              and replies to those comments before re-review.
             </p>
           </div>
           <div class="flow-line">
             <article><span class="step">01</span><h3>Open PR</h3><p>Attach the story, proof, risk, docs, and release impact.</p><small>Initial handoff</small></article>
             <article><span class="step">02</span><h3>Clean, review, verify</h3><p>Clean slop, run AI code review, fix findings, update metadata, and monitor CI.</p><small>PR quality loop</small></article>
             <article><span class="step">03</span><h3>Clear AI findings</h3><p>Stop only when required checks pass and no AI findings still need action.</p><small>Evidence ready</small></article>
-            <article><span class="step">04</span><h3>Human GitHub review</h3><p>The reviewer reads the PR normally and leaves comments or requested changes.</p><small>Human judgment</small></article>
+            <article><span class="step">04</span><h3>Human PR review</h3><p>The reviewer reads the PR normally and leaves comments or requested changes.</p><small>Human judgment</small></article>
             <article><span class="step">05</span><h3>Agent fixes comments</h3><p>The agent patches actionable feedback, reruns proof, replies, and requests re-review.</p><small>Review loop</small></article>
             <article><span class="step">06</span><h3>Release gate</h3><p>Merge, UAT acceptance, and promotion remain explicit human-controlled actions.</p><small>No auto-merge</small></article>
           </div>
